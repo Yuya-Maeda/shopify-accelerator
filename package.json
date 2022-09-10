@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm-run-all -p watch-sass",
+    "watch-sass": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/Yuya-Maeda/shopify-accelerator/issues"
   },
-  "homepage": "https://github.com/Yuya-Maeda/shopify-accelerator#readme"
+  "homepage": "https://github.com/Yuya-Maeda/shopify-accelerator#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-sass": "^5.1.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.54.9"
+  }
 }
