@@ -1,31 +1,47 @@
 {{- 'carousel.css' | asset_url | stylesheet_tag -}}
 
-<div class="carousel">
-<button class="carousel__button carousel__button--left is-hidden">
-    {% render 'svg-left-arrow' %}
-</button>
-<div class="carousel__track-container">
-    <ul class="carousel__track">
-        <li class="carousel__slide current-slide">
-            <img class="carousel__image"  src="https://source.unsplash.com/random/800x800/?pink" alt="">
-        </li>
-        <li class="carousel__slide">
-            <img class="carousel__image" src="https://source.unsplash.com/random/800×800/?pink" alt="">
-        </li>
-        <li class="carousel__slide">
-            <img class="carousel__image" src="https://source.unsplash.com/random/800×800/?pink" alt="">
-        </li>
-    </ul>
-</div>
-<button class="carousel__button carousel__button--right">
-    {% render 'svg-right-arrow' %}
-</button>
-
-<div class="carousel__nav">
-    <button class="carousel__indicator current-slide"></button>
-    <button class="carousel__indicator"></button>
-    <button class="carousel__indicator"></button>
-</div>
+<div class="container">
+    <div class="carousel carousel-container">
+    <button class="carousel__button carousel__button--left is-hidden">
+        {% render 'svg-left-arrow' %}
+    </button>
+    <div class="carousel__track-container">
+        <ul class="carousel__track">
+            {%- # Slide For loop -%}
+            {% for block in section.blocks %}
+                <li class="carousel__slide current-slide">
+                    <div>
+                        {% if block.settings.image != blank %}    
+                        {{- block.settings.image | image_url: width:2400 | image_tag: class: 'carousel__image', alt: block.settings.title   -}}
+                        {% else %}
+                        {{ 'product-1' | placeholder_svg_tag : 'classname' }}
+                        {% endif %}
+                        <div>
+                            <div class="slide-contents">
+                                <div class="slide-contents-title"><h2>{{- block.settings.title -}}</h2></div>
+                                <div class="slide-contents-text"><p>{{- block.settings.textarea -}}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}    
+        </ul>
+    </div>
+    <button class="carousel__button carousel__button--right">
+        {% render 'svg-right-arrow' %}
+    </button>
+    
+    <div class="carousel__nav">
+        {%- # Nav Dots -%}
+        {% for block in section.blocks %}
+            {% if forloop.index == 1 %}
+            <button class="carousel__indicator current-slide"></button>
+            {% else %}
+            <button class="carousel__indicator"></button>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </div>
 </div>
 
 
@@ -44,6 +60,32 @@
             "label": "Title",
             "default": "Default Title"
         }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "slide",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Slide Title ",
+                    "default": "Slide Title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "textarea",
+                    "label": "Slide Text",
+                    "default": "Slide Text Paragraph. Write about your brand, your story, your passion!"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Slide Image"
+                }
+            ]
+        }
+        
     ],
     "presets": [
         {
