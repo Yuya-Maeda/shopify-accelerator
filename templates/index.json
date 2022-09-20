@@ -1,10 +1,20 @@
 {
   "sections": {
     "example": {
-      "type": "example"
+      "type": "example",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "1663637628621a3069": {
+      "type": "carousel",
+      "settings": {
+        "title": "Default Title"
+      }
     }
   },
   "order": [
-    "example"
+    "example",
+    "1663637628621a3069"
   ]
 }

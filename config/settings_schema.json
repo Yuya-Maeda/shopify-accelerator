@@ -4,10 +4,9 @@
     "theme_name": "Accelerator",
     "theme_version": "0.1.0-alpha",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_documentation_url": "https:\/\/help.shopify.com\/en\/manual\/online-store\/themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
   },
-  
   {
     "name": "Color Settings",
     "settings": [
@@ -46,7 +45,7 @@
         "label": "Color Text 1"
       },
       {
-        "type" : "color",
+        "type": "color",
         "id": "colors_text_2",
         "default": "#ffffff",
         "label": "Color Text 2"
@@ -54,7 +53,7 @@
       {
         "type": "color",
         "id": "colors_background_1",
-        "default":"#f7f4f0",
+        "default": "#f7f4f0",
         "label": "Background Color 1"
       },
       {
@@ -90,7 +89,7 @@
     "name": "Layout",
     "settings": [
       {
-        "type":"header",
+        "type": "header",
         "content": "Layout"
       }
     ]
@@ -105,7 +104,6 @@
     ]
   },
   {
-    // バリエーションのビル型ボタン
     "name": "Variation bill button",
     "settings": [
       {
@@ -165,7 +163,7 @@
   },
   {
     "name": "Drawer",
-    "settings":[
+    "settings": [
       {
         "type": "header",
         "content": "Drawer"
@@ -183,7 +181,7 @@
   },
   {
     "name": "Icons",
-    "settings":[
+    "settings": [
       {
         "type": "header",
         "content": "Icons"
@@ -201,41 +199,41 @@
         "type": "text",
         "id": "social_twitter_link",
         "label": "t:settings_schema.social_media.settings.social_twitter_link.label",
-        "default": "http://twitter.com",
+        "default": "http:\/\/twitter.com",
         "info": "t:settings_schema.social_media.settings.social_twitter_link.info"
       },
       {
         "type": "text",
         "id": "social_facebook_link",
         "label": "t:settings_schema.social_media.settings.social_facebook_link.label",
-        "default": "https://facebook.com",
+        "default": "https:\/\/facebook.com",
         "info": "t:settings_schema.social_media.settings.social_facebook_link.info"
       },
       {
         "type": "text",
         "id": "social_pinterest_link",
         "label": "t:settings_schema.social_media.settings.social_pinterest_link.label",
-        "default": "https://pinterest.com",
+        "default": "https:\/\/pinterest.com",
         "info": "t:settings_schema.social_media.settings.social_pinterest_link.info"
       },
       {
         "type": "text",
         "id": "social_instagram_link",
-        "default": "https://instagraml.com",
+        "default": "https:\/\/instagraml.com",
         "label": "t:settings_schema.social_media.settings.social_instagram_link.label",
         "info": "t:settings_schema.social_media.settings.social_instagram_link.info"
       },
       {
         "type": "text",
         "id": "social_tiktok_link",
-        "default": "https://tiktok",
+        "default": "https:\/\/tiktok",
         "label": "t:settings_schema.social_media.settings.social_tiktok_link.label",
         "info": "t:settings_schema.social_media.settings.social_tiktok_link.info"
       },
       {
         "type": "text",
         "id": "social_tumblr_link",
-        "default": "https://tumblr.com",
+        "default": "https:\/\/tumblr.com",
         "label": "t:settings_schema.social_media.settings.social_tumblr_link.label",
         "info": "t:settings_schema.social_media.settings.social_tumblr_link.info"
       },
@@ -243,24 +241,23 @@
         "type": "text",
         "id": "social_snapchat_link",
         "label": "t:settings_schema.social_media.settings.social_snapchat_link.label",
-        "default": "https://snapchat.com",
+        "default": "https:\/\/snapchat.com",
         "info": "t:settings_schema.social_media.settings.social_snapchat_link.info"
       },
       {
         "type": "text",
         "id": "social_youtube_link",
         "label": "t:settings_schema.social_media.settings.social_youtube_link.label",
-        "default": "https://youtube.com",
+        "default": "https:\/\/youtube.com",
         "info": "t:settings_schema.social_media.settings.social_youtube_link.info"
       },
       {
         "type": "text",
         "id": "social_vimeo_link",
-        "default": "https://vimeo.com",
+        "default": "https:\/\/vimeo.com",
         "label": "t:settings_schema.social_media.settings.social_vimeo_link.label",
         "info": "t:settings_schema.social_media.settings.social_vimeo_link.info"
       }
     ]
   }
-
 ]

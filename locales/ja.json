@@ -10,7 +10,7 @@
       "country": {
         "label": "国",
         "option_label": "{{ name }} ({{ currency_iso_code }} {{ currency_symbol }})",
-        "update": "国/地域を更新する"
+        "update": "国\/地域を更新する"
       },
       "language": {
         "label": "言語",
@@ -48,7 +48,7 @@
       "login_form_password_label": "あなたのパスワード",
       "login_form_error": "パスワードが正しくありません。",
       "login_form_submit": "ストアにアクアスする",
-      "admin_link_html": "あなたはストアオーナーですか?<a href=\"/admin\" class=\"link underlined-link\">こちらからログインする</a>",
+      "admin_link_html": "あなたはストアオーナーですか?<a href=\"\/admin\" class=\"link underlined-link\">こちらからログインする<\/a>",
       "powered_by_shopify_html": "このショップでは{{ shopify }}を使用する予定です"
     },
     "dialog": {
@@ -88,9 +88,9 @@
       "empty": "カートは空です",
       "cart_error": "カートをアップデートするときにエラーが発生しました。もう一度お試しください。",
       "cart_quantity_error_html": "このアイテムは{{ quantity }}個しかカートに追加することができません。",
-      "taxes_and_shipping_policy_at_checkout_html": "税と<a href=\"{{ link }}\">配送料</a>は購入手続き時に計算されます",
+      "taxes_and_shipping_policy_at_checkout_html": "税と<a href=\"{{ link }}\">配送料<\/a>は購入手続き時に計算されます",
       "taxes_included_but_shipping_at_checkout": "税込みで、配送料は購入手続き時に計算されます",
-      "taxes_included_and_shipping_policy_html": "税込み。<a href=\"{{ link }}\">配送料</a>はチェックアウト時に計算されます。",
+      "taxes_included_and_shipping_policy_html": "税込み。<a href=\"{{ link }}\">配送料<\/a>はチェックアウト時に計算されます。",
       "taxes_and_shipping_at_checkout": "税と配送料は購入手続き時に計算されます",
       "headings": {
         "product": "商品",
@@ -102,7 +102,7 @@
       "update": "更新",
       "login": {
         "title": "アカウントをお持ちですか?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">ログイン</a>することで、チェックアウトがスピーディーに行えます。"
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">ログイン<\/a>することで、チェックアウトがスピーディーに行えます。"
       }
     },
     "featured_blog": {
@@ -144,7 +144,7 @@
       },
       "add_to_cart": "カートに追加",
       "include_taxes": "税込み。",
-      "shipping_policy_html": "<a href=\"{{ link }}\">配送料</a>はチェックアウト時に計算されます。",
+      "shipping_policy_html": "<a href=\"{{ link }}\">配送料<\/a>はチェックアウト時に計算されます。",
       "product_variants": "商品バリエーション",
       "total_reviews": "レビュー数の合計",
       "star_reviews_info": "{{ rating_max }}つ星中{{ rating_value }}つ",
@@ -163,7 +163,7 @@
       "reset": "リセット",
       "sort_by_label": "並び替え:",
       "to": "まで",
-      "use_fewer_filters_html": "商品が見つかりません。絞り込みの数を減らす、または<a href=\"{{ link }}\">すべて削除する</a>"
+      "use_fewer_filters_html": "商品が見つかりません。絞り込みの数を減らす、または<a href=\"{{ link }}\">すべて削除する<\/a>"
     },
     "pickup_availability": {
       "available": "受取が可能です",
@@ -281,7 +281,7 @@
       "address1": "住所1",
       "address2": "住所2",
       "city": "市区町村",
-      "country": "国/地域",
+      "country": "国\/地域",
       "province": "都道府県",
       "zip": "郵便番号",
       "phone": "電話番号",
