@@ -53,6 +53,7 @@
 {% schema %}
 {
     "name": "Carousel",
+    "limit": 1,
     "settings": [
         {
             "type": "text",
@@ -89,9 +90,22 @@
     ],
     "presets": [
         {
-            "name": "Carousel", // "Spacer",
-            "category": "Carousel"
+            "name": "Carousel", 
+            "category": "Carousel",
+            "blocks": [
+                {
+                    "type": "slide"
+                },
+                {
+                    "type": "slide"
+                },
+                {
+                    "type": "slide"
+                }
+            ]
+
         }
+        
     ]
 }
 {% endschema %}
