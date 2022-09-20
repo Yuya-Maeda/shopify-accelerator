@@ -3,7 +3,7 @@
     "newsletter": {
       "heading": "ニュースレター",
       "email": "メールアドレス",
-      "subscribe": "登録の確認はこちら",
+      "subscribe": "登録",
       "success": "ご登録ありがとうございます"
     },
     "localization": {

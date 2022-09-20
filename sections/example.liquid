@@ -2,20 +2,24 @@
 {{ 'component-dialog.css' | asset_url | stylesheet_tag }}
 
 <div class="container">
+
   <p class="message-error h4">
     This section is for development purposes only and should be removed from the final version of the
     theme that is intended for merchant use.
   </p>
 
   <h1>Accelerator Theme</h1>
-
+  {%- comment -%}
   <p>
     The Accelerator theme is a lightweight, flexible foundation on top of which Shopify themes can be built. It
     represents a HTML-first, JavaScript-only-as-needed approach to theme development with performance, flexibility, and
-    <a href="https://www.shopify.com/partners/blog/shopify-online-store">Online Store 2.0 features</a> built-in and acts as a
+    <a href="https://www.shopify.com/partners/blog/shopify-online-store">Online Store 2.0 features</a> built-in and acts
+    as a
     starting point to accelerate the development of Shopify themes.
   </p>
 
+  {%- endcomment -%}
+  {%- comment-%}
   <h2>Example components</h2>
 
   <h3 class="visually-hidden">Table of contents</h3>
@@ -54,7 +58,9 @@
       <a href="#typography">Typography</a>
     </li>
   </ol>
+  {%- endcomment -%}
 
+  {%- comment -%}
   <div id="button">
     <h4>Button</h4>
     <form>
@@ -66,6 +72,8 @@
 
   <hr>
 
+  {%- endcomment -%}
+
   <div id="card">
     <h4>Card</h4>
 
@@ -73,10 +81,8 @@
       <li>
         <h5>Article card</h5>
         <div class="card">
-          <div
-            class="media"
-            style="--width: {{ article.image.width | default: 100 }}; --height: {{ article.image.height | default: 100 }};"
-          >
+          <div class="media"
+            style="--width: {{ article.image.width | default: 100 }}; --height: {{ article.image.height | default: 100 }};">
             {{ 'image' | placeholder_svg_tag }}
           </div>
           <h2>
@@ -88,10 +94,8 @@
       <li>
         <h5>Collection card</h5>
         <div class="card">
-          <div
-            class="media"
-            style="--width: {{ collection.image.width | default: 100 }}; --height: {{ collection.image.width | default: 100 }};"
-          >
+          <div class="media"
+            style="--width: {{ collection.image.width | default: 100 }}; --height: {{ collection.image.width | default: 100 }};">
             {{ 'collection-1' | placeholder_svg_tag }}
           </div>
           <h2>
@@ -102,10 +106,8 @@
       <li>
         <h5>Product card</h5>
         <div class="card">
-          <div
-            class="media"
-            style="--width: {{ product.featured_media.width | default: 100 }}; --height: {{ product.featured_media.height | default: 100 }};"
-          >
+          <div class="media"
+            style="--width: {{ product.featured_media.width | default: 100 }}; --height: {{ product.featured_media.height | default: 100 }};">
             {{ 'product-1' | placeholder_svg_tag }}
           </div>
           <h2>
@@ -117,9 +119,9 @@
       </li>
     </ul>
   </div>
-
   <hr>
 
+  {%- comment -%}
   <div id="dialog">
     <h4>Dialog</h4>
 
@@ -229,9 +231,9 @@
         <div class="dialog-body">
           <ul id="dropdown-3" class="list-unstyled" role="list">
             {% for i in (1..18) %}
-              <li>
-                <a href="#">Item {{ i }}</a>
-              </li>
+            <li>
+              <a href="#">Item {{ i }}</a>
+            </li>
             {% endfor %}
           </ul>
         </div>
@@ -241,9 +243,8 @@
       </div>
     </details>
   </div>
-
+  {%- endcomment -%}
   <hr>
-
   <div id="dropdown">
     <h4>Dropdown</h4>
 
@@ -282,70 +283,29 @@
         <li><a href="#">Item 1</a></li>
         <li><a href="#">Item 2</a></li>
         <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a></li>
-        <li><a href="#">Item 3</a></li>
       </ul>
     </details>
   </div>
-
   <hr>
-
+  {%- comment -%}
   <div id="grid">
     <h4>Grid</h4>
     <ul class="grid list-unstyled" role="list">
       {% for i in (1..6) %}
-        <div class="card">
-          <div
-            class="media"
-            style="--width: {{ article.image.width | default: 100 }}; --height: {{ article.image.height | default: 100 }};"
-          >
-            {{ 'product-' | append: i | placeholder_svg_tag }}
-          </div>
-          <h5>Grid item</h5>
+      <div class="card">
+        <div class="media"
+          style="--width: {{ article.image.width | default: 100 }}; --height: {{ article.image.height | default: 100 }};">
+          {{ 'product-' | append: i | placeholder_svg_tag }}
         </div>
+        <h5>Grid item</h5>
+      </div>
       {% endfor %}
     </ul>
   </div>
-
+  {%- endcomment -%}
   <hr>
 
+  {%- comment -%}
   <div id="input">
     <h4>Input</h4>
     <form>
@@ -381,9 +341,9 @@
       <label for="check-2">Option 2</label>
     </form>
   </div>
-
+  {%- endcomment -%}
   <hr>
-
+  {%- comment -%}
   <div id="loading">
     <h4>Loading</h4>
 
@@ -392,13 +352,8 @@
         <div class="media" style="--width: 3; --height: 1;">
           <div class="loading-overlay">
             <div>
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                role="presentation"
-                viewBox="0 0 66 66"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg">
                 <circle fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
               </svg>
             </div>
@@ -407,9 +362,10 @@
       </li>
     </ul>
   </div>
-
+  {%- endcomment -%}
   <hr>
 
+  {%- comment -%}
   <div id="media">
     <h4>Media</h4>
 
@@ -423,10 +379,7 @@
       <li>
         <h5>External video</h5>
         <a href="https://www.youtube.com/embed/_9VUPq3SxOc">
-          <div
-            class="media play-icon"
-            style="--width: 1600; --height: 900;"
-          >
+          <div class="media play-icon" style="--width: 1600; --height: 900;">
             {{ 'lifestyle-1' | placeholder_svg_tag }}
           </div>
           <span class="visually-hidden">
@@ -436,17 +389,17 @@
       </li>
     </ul>
   </div>
-
+  {%- endcomment -%}
   <hr>
-
+  {%- comment -%}
   <div id="message">
     <h4>Message</h4>
     <span class="message-success">Success message</span>
     <span class="message-error">Error message</span>
   </div>
-
+  {%- endcomment -%}
   <hr>
-
+  {%- comment -%}
   <div id="table">
     <h4>Table</h4>
 
@@ -496,9 +449,9 @@
       </table>
     </div>
   </div>
-
+  {%- endcomment -%}
   <hr>
-
+  {%- comment -%}
   <div id="typography">
     <h4>Typography</h4>
 
@@ -514,9 +467,13 @@
 
     <h5>Paragraph</h5>
     <p>
-      {{ "The <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields." | escape }}
+      {{ "The
+    <p> HTML element represents a paragraph. Paragraphs are usually represented in visual media as blocks of text
+      separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any
+      structural grouping of related content, such as images or form fields." | escape }}
     </p>
   </div>
+  {%- endcomment -%}
 
   <p class="message-error h4">
     This section is for development purposes only and should be removed from the final version of the
@@ -526,10 +483,10 @@
 
 {% schema %}
 {
-  "name": "Example",
-  "tag": "section",
-  "settings": [
+"name": "Example",
+"tag": "section",
+"settings": [
 
-  ]
+]
 }
 {% endschema %}

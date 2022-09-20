@@ -1,0 +1,52 @@
+{{- 'carousel.css' | asset_url | stylesheet_tag -}}
+
+<div class="carousel">
+<button class="carousel__button carousel__button--left">
+    {% render 'svg-left-arrow' %}
+</button>
+<div class="carousel__track-container">
+    <ul class="carousel__track">
+        <li class="carousel__slide">
+            <img class="carousel__image"  src="https://source.unsplash.com/random/800x800/?pink" alt="">
+        </li>
+        <li class="carousel__slide">
+            <img class="carousel__image" src="https://source.unsplash.com/random/800×800/?pink" alt="">
+        </li>
+        <li class="carousel__slide">
+            <img class="carousel__image" src="https://source.unsplash.com/random/800×800/?pink" alt="">
+        </li>
+    </ul>
+</div>
+<button class="carousel__button carousel__button--right">
+    {% render 'svg-right-arrow' %}
+</button>
+
+<div class="carousel__nav">
+    <button class="carousel__indicator current-slide"></button>
+    <button class="carousel__indicator"></button>
+    <button class="carousel__indicator"></button>
+</div>
+</div>
+
+
+{{- 'carousel.js' | asset_url | script_tag -}}
+
+{% schema %}
+{
+    "name": "Carousel",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Default Title"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Carousel", // "Spacer",
+            "category": "Carousel"
+        }
+    ]
+}
+{% endschema %}

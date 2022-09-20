@@ -1,0 +1,182 @@
+<style>
+	fieldset {
+		border: none;
+        margin: 10px 0 10px 0;
+	}
+	.radio-option-box {
+		display: flex;
+        width: 100%;
+		justify-content: space-between;
+		align-items: center;
+        margin-top: 10px;
+        
+	}
+	.radio-option-box input[type="radio"] {
+		display: none;
+	}
+
+	legend {
+		color: var(--color-text-1);
+	}
+
+	.radio-option-box label {
+		position: relative;
+		color: var(--color-text-1);
+		font-weight: bold;
+		border: 3px solid var(--color-text-1);
+		min-width: 70px;
+		padding: 5px 10px;
+		text-align: center;
+        cursor: pointer;
+	}
+    .radio-option-box label:hover {
+        background-color: var(--color-text-1);
+        color: var(--color-text-2);
+
+    }
+	.radio-option-box input[type="radio"]:checked + label {
+        background-color: var(--color-text-1);
+        color: var(--color-text-2);
+
+	}
+	/* .radio-option-box label::before {
+        position:absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        border: 3px solid var(--color-text-light);
+        border-radius: 50%;
+        margin-right:20px;
+    } */
+</style>
+
+<div>
+    <!-- product variant button  -->
+    {%- unless product.has_only_default_variant -%} 
+    {%- for option in product.options_with_values -%}
+    <fieldset 
+    id="ProductSelect-option-{{ forloop.index0 }}" 
+    name="{{ option.name | handleize }}"
+    >
+    <legend>{{ option.name | escape }}</legend>
+        <div class="radio-option-box">
+            {%- for value in option.values -%}
+            <!-- Check to see if there's a product size option. If there is a size, check to see if there's any available for purchase. If not, set the variant control in a "disabled" state. -->
+            {%- assign variant_label_state = true -%} 
+            {%- if product.options.size == 1 -%} 
+                {%- unless product.variants[forloop.index0].available -%} 
+                {%- assign variant_label_state = false -%} 
+                {%- endunless -%} 
+            {%- endif -%} 
+            <input
+            type="radio" 
+            {% if option.selected_value == value %} 
+            checked="checked" 
+            {% endif %} 
+            {% unless variant_label_state %} 
+            disabled="disabled" 
+            {% endunless %} 
+            value="{{ value | escape }}" 
+            data-index="option{{ forloop.index }}"
+            name="{{ option.name | handleize }}" 
+            id="ProductSelect-option-{{ option.name | handleize}}-{{ value | escape }}"
+            >
+            <label for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}">
+                {{ value | escape }}
+            </label>
+            {%- endfor -%}
+        </div>
+    </fieldset>
+    {%- endfor -%}
+    {%- endunless -%}
+
+<script>
+// Get product JSON file  and array of variants
+const productVariants = {{ product | json }}.variants || {};
+console.log(productVariants,'productvariants from JSON');
+// get options
+const [...options] = document.querySelectorAll('fieldset');
+console.log(options,options.length, "options")
+// This is get value of checked value
+getCheckedValue = (element) => {
+    for( option of element ) { if(option.checked) return option.defaultValue }
+}
+//For change url
+changeUrl= (e) =>{
+   const url = new URL(window.location.href);
+   url.searchParams.set('variant', e)
+   console.log(url.href)
+   window.location = url.href
+    }
+
+if(options.length === 1){
+    const [...radiosOption1] = options[0].getElementsByTagName('input');
+    console.log(radiosOption1, "option1")   
+    //When radio button changed, it runs
+    options.forEach(option => option.addEventListener('change',function(e){
+    // get option1's checked radio value
+    const selectedValue1 = getCheckedValue(radiosOption1);
+    // get Product selected variant ID
+    getSelectedId = () => {
+                for(i= 0; i < productVariants.length; i++){
+                    if(productVariants[i].option1 === selectedValue1) {return productVariants[i].id}               }
+                   }
+                // get product ID Number
+                const productId = getSelectedId()
+                console.log(productId, 'productId')
+                // change URL based on mached productId
+                changeUrl(productId);
+                }))
+
+            }else if(options.length === 2 ){
+                const [...radiosOption1] = options[0].getElementsByTagName('input')
+                const [...radiosOption2] = options[1].getElementsByTagName('input')
+                console.log(radiosOption1, "option1")
+                console.log(radiosOption2, "option2")
+                //When radio button changed, it runs
+                options.forEach(option => option.addEventListener('change',function(e){
+                // get options checked radio value
+                const selectedValue1 = getCheckedValue(radiosOption1)
+                const selectedValue2 = getCheckedValue(radiosOption2)
+                console.log(selectedValue1,"selectedValue1", selectedValue2,"selectedValue2")
+                // get Product selected variant ID option1 and option2 both matched 
+                getSelectedId = () => {
+                    for(i= 0; i < productVariants.length; i++){
+                        if(productVariants[i].option1 === selectedValue1 && productVariants[i].option2 === selectedValue2){
+                            return productVariants[i].id
+                            }
+                        }
+                   }
+                // console.log('changed!',getSelectedId());
+                const productId = getSelectedId() //product ID Number
+                changeUrl(productId);
+            }))
+
+           }else if(options.length === 3 ){
+                const [...radiosOption1] = options[0].getElementsByTagName('input')
+                const [...radiosOption2] = options[1].getElementsByTagName('input')
+                const [...radiosOption3] = options[2].getElementsByTagName('input')
+
+                options.forEach(option => option.addEventListener('change',function(e){
+                    //get checked radio values
+                    const selectedValue1 = getCheckedValue(radiosOption1)
+                    const selectedValue2 = getCheckedValue(radiosOption2)
+                    const selectedValue3 = getCheckedValue(radiosOption3)
+                    console.log(selectedValue1,"selectedValue1",selectedValue2,"selectedValue3",selectedValue3,"selectedValue3")
+
+                    // get Product selected variant ID
+                    getSelectedId = () => {
+                    for(i= 0; i < productVariants.length; i++){
+                        if(productVariants[i].option1 === selectedValue1 && productVariants[i].option2 === selectedValue2 && productVariants[i].option3 === selectedValue3){
+                            return productVariants[i].id
+                            } else { }
+                        }
+                    }
+                // console.log('changed!',getSelectedId());
+                const productId = getSelectedId() //product ID Number
+
+                changeUrl(productId);
+                }))
+                }  // end if
+</script>
+</div>

@@ -6,7 +6,11 @@
   "scripts": {
     "start": "npm-run-all -p watch-sass",
     "watch-sass": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "login": "shopify login --store=green-dolphin-street.myshopify.com",
+    "serve": "shopify theme serve",
+    "push": "shopify theme push --ignore 'config/**/*.json' ",
+    "pull": "shopify theme pull --nodelete -x 'assets/*' -x 'layout/*' -x 'locales/*' -x 'sections/*' -x 'snippets/*' -x 'templates/*.liquid' -x 'config/settings_schema.json' "
   },
   "repository": {
     "type": "git",

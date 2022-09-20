@@ -1,2 +1,11 @@
+/* ===== Base ===== */
+
 body {
+    background-color: var(--color-background-1);
+    color: var(--color-text-1);
+}
+
+
+.hishigata {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }

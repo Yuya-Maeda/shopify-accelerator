@@ -1,7 +1,12 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+<style>
 
+
+</style>
 <div class="container">
+
   <h1>{{ section.settings.title | escape }}</h1>
+
   {%- paginate collections by section.settings.collections_per_page -%}
     <ol class="list-unstyled grid" role="list">
       {%- for collection in collections -%}
