@@ -1,12 +1,12 @@
 {{- 'carousel.css' | asset_url | stylesheet_tag -}}
 
 <div class="carousel">
-<button class="carousel__button carousel__button--left">
+<button class="carousel__button carousel__button--left is-hidden">
     {% render 'svg-left-arrow' %}
 </button>
 <div class="carousel__track-container">
     <ul class="carousel__track">
-        <li class="carousel__slide">
+        <li class="carousel__slide current-slide">
             <img class="carousel__image"  src="https://source.unsplash.com/random/800x800/?pink" alt="">
         </li>
         <li class="carousel__slide">
@@ -31,6 +31,9 @@
 
 {{- 'carousel.js' | asset_url | script_tag -}}
 
+<script>
+
+</script>
 {% schema %}
 {
     "name": "Carousel",
