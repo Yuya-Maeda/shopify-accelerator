@@ -6,8 +6,36 @@
       "settings": {
       }
     },
-    "1663637628621a3069": {
+    "166368578378358739": {
       "type": "carousel",
+      "blocks": {
+        "1663685783707eb6f7-0": {
+          "type": "slide",
+          "settings": {
+            "title": "Slide Title",
+            "textarea": "Slide Text Paragraph. Write about your brand, your story, your passion!"
+          }
+        },
+        "1663685783707eb6f7-1": {
+          "type": "slide",
+          "settings": {
+            "title": "Slide Title",
+            "textarea": "Slide Text Paragraph. Write about your brand, your story, your passion!"
+          }
+        },
+        "1663685783707eb6f7-2": {
+          "type": "slide",
+          "settings": {
+            "title": "Slide Title",
+            "textarea": "Slide Text Paragraph. Write about your brand, your story, your passion!"
+          }
+        }
+      },
+      "block_order": [
+        "1663685783707eb6f7-0",
+        "1663685783707eb6f7-1",
+        "1663685783707eb6f7-2"
+      ],
       "settings": {
         "title": "Default Title"
       }
@@ -15,6 +43,6 @@
   },
   "order": [
     "example",
-    "1663637628621a3069"
+    "166368578378358739"
   ]
 }
