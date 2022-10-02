@@ -50,18 +50,22 @@
 <div class="container product-info">
 
   {% for block in section.blocks %}
-  {%- # When Case  -%}
+  {%- # When Case blocks -%}
     {% case block.type %}
+
       {%- when '@app' -%}
       {% render block %}
+
       {%- when 'text' -%}
       <p {{ block.shopify_attributes }}>  {{ block.settings.text }}</p>
+      
       {%- when 'title' -%}
       <h1>{{- product.title | escape -}}</h1>
 
       {% when 'price'  %}
       {%- # Price and Quantity -%}
       <div class="price-quantity-grid" {{ block.shopify_attributes }}>
+        {%- # Price -%}
         <div
         id="Price-{{ section.id}}"
         class="no-js-hidden"
@@ -69,10 +73,9 @@
         >
           {% render 'price', product: product, user_variant: true, show_badges: true %}
         </div>
+        {%- # Quantity -%}
         <div>
           <div class="product-quantity">
-
-
             <label for="quantity-{{ section.id }}">
               {{ 'products.product.quantity.label' | t }}
             </label>
@@ -115,9 +118,10 @@
           </div>
         </div>
       </div>
-      {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
-              <div>
-                {%- if shop.taxes_included -%}
+      <div>
+        {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+          <div>
+            {%- if shop.taxes_included -%}
                   {{ 'products.product.include_taxes' | t }}
                 {%- endif -%}
                 {%- if shop.shipping_policy.body != blank -%}
@@ -131,15 +135,16 @@
                 form 'product',
                 product,
                 id: installment_id
-              -%}
+                -%}
                 <input
                   type="hidden"
                   name="id"
                   value="{{ product.selected_or_first_available_variant.id }}"
                 >
-                {{ form | payment_terms }}
-              {%- endform -%}
-            </div>
+                  {{ form | payment_terms }}
+                {%- endform -%}
+              </div>
+      </div>
       
       {%- when 'variant_picker' -%}
        {%- # Variant Picker -%}
@@ -188,8 +193,8 @@
         </noscript>
         
       {% endunless %}
-      {%- when 'buy_buttons' -%}
 
+      {%- when 'buy_buttons' -%}
         {%- # Cart Button -%}
         <div class="cart-button-container" {{ block.shopify_attributes }}>
         <product-form {{ block.shopify_attributes }}>
@@ -238,6 +243,7 @@
         </div>
       {% endunless %}
       
+      {%- # Pickup Availability -%}
       {%- when 'rating' -%}
       {%- unless product.metafields.reviews.rating.value == blank -%}
       <p class="rating">
@@ -249,6 +255,8 @@
         </span>
       </p>
       {%- endunless -%}
+
+      {%- # Pickup Availability -%}
       {%- when 'pickup_availability' -%}
       <script src="{{ 'pickup-availability.js' | asset_url }}"></script>
       <pickup-availability data-product-variant="{{ product.selected_or_first_available_variant.id }}">
@@ -258,13 +266,9 @@
       </pickup-availability>
       {% else %}
 
-      
-
-      {% endcase %}
-      
+      {% endcase %}      
   {% endfor %}
 
-  
   {%- if first_3d_model -%}
   <script type="application/json" id="Product-JSON-{{ product.id }}">
     {{ product.media | where: 'media_type', 'model' | json }}
@@ -272,9 +276,6 @@
   <script src="{{ 'product-model.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
-  
- 
-  
 
 </div>
 <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
@@ -307,11 +308,7 @@
             "limit": 1
         }, {
             "type": "price",
-            "name": "t:sections.main-product.blocks.price.name",
-            "limit": 1
-        }, {
-            "type": "quantity_selector",
-            "name": "t:sections.main-product.blocks.quantity_selector.name",
+            "name": "Price-and-Quantity",
             "limit": 1
         }, {
             "type": "variant_picker",
