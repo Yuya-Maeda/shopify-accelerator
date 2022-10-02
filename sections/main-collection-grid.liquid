@@ -1,6 +1,107 @@
 {% render 'filter-and-sort', results: collection %}
+<style>
+.collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.product-card {
+  position: relative;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  filter: brightness(0.95);
+}
+.product-card:hover {
+  filter: brightness(1.1);
+}
+.product-card__image {
+  width: 100%;
+  object-fit: cover;
+  top:0;
+  left:0;
+}
+.product-card__overlay {
+  position: absolute;
+  width: 100%;
+  top:0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(251, 240, 230, 0) 65%, rgba(19, 15, 11, 0.87) 100%);
+}
+.product-card__info {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+  gap: 5px;
+}
+
+.product-card__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+.product-label {
+  clip-path: var(--shape);
+  color: var(--color-text-light);
+  height: 70px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+}
+.product-label--sale {
+  background-color: red;
+}
+.product-label--new {
+  background-color: blue;
+}
+.product-card__title {
+color: white;
+border-bottom: 3px solid var(--color-border);
+}
+.product-card__price {
+color: white;
+}
+</style>
 
 {%- paginate collection.products by 8 -%}
+  <div class="container">
+    {%- if collection.products.size == 0 -%}
+      {{ 'products.facets.use_fewer_filters_html' | t: link: collection.url }}
+    {%- endif -%}
+    <div class="collection">
+      {% for product in collection.products %}
+        {%- #card-example 1 -%}
+        <a href="{{- product.url -}}" class="product-card">
+          {{- product | image_url: width: 600 | image_tag: class: 'product-card__image'  -}}
+          <div class="product-card__overlay"></div>
+          <div class="product-card__label">
+            {%- liquid 
+                assign today_date = 'now' | date: '%s'
+                assign pre_date = product.published_at | date: '%s'
+                assign how_old = today_date | minus: pre_date 
+              -%}
+            {%- # new is less than one month old  # 60 seconds * 60 minuets * 24 hours * 30days  -%}
+
+            {% if how_old <= 2592000 %}
+            <div class="product-label product-label--new">new</div>
+            {% endif %}
+            {% if product.compare_at_price <= product.compare_at_price_max %}
+            <div class="product-label product-label--sale">sale</div>
+            {% endif %}
+          </div>
+          <div class="product-card__info">
+            <div class="product-card__title">{{- product.title  -}}</div>
+            <div class="product-card__price">{{- product.price | money -}}</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {%- comment -%}
   <div class="container">
     {%- if collection.products.size == 0 -%}
       {{ 'products.facets.use_fewer_filters_html' | t: link: collection.url }}
@@ -15,4 +116,5 @@
     </ul>
   </div>
   {% render 'pagination', paginate: paginate %}
+  {%- endcomment -%}
 {%- endpaginate -%}

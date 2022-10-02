@@ -10,84 +10,7 @@
   endif
   assign first_3d_model = product.media | where: "media_type", "model" | first
 -%}
-
-<style>
-.image-container {
-position: relative;
-border: 3px solid purple;
-padding: 0;
-}
-.featured-media {
-  border: 3px solid red;
-  width: 100%;
-}
-.variant-image-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-.variant-images-container {
-  position: absolute;
-  border: 3px solid green;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-.variant-image {
-  border:solid 2px pink;
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  filter: brightness(0.9);
-}
-
-.variant-image:hover .featured-media {
-  filter: brightness(0.3);
-}
-.variant-image:hover {
-  filter: brightness(1);
-}
-
-/* ====== Product Info ====== */
-.product-info > div {
-  margin: 20px 0 20px 0;
-}
-
-.product-info h1 {
-  font-size: 3rem;
-  text-align: center;
-}
-
-.price-quantity-grid {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-between;
-}
-
-.product-variant-selector {
-  
-}
-
-/* == Cart Buttons == */
-.cart-button-container button {
-width: 100%;
-margin: 10px 0 10px 0;
-border: 3px solid var(--color-text-1);
-}
-.buy-it-now-button-container button {
-
-  width: 100%;
-}
-.shopify-payment-button__button {
-  background-color: var(--color-text-1);
-  border: none;
-  color: var(--color-background-1);
-}
-@media screen and (max-width:749px) {
-  .product-info h1 {
-    font-size: 1.5rem;
-  }
-}
-</style>
+{%- assign product_form_id = 'Product-Form-' | append: section.id -%}
 {%- # Product Media -%}
 <media-gallery id="Product-MediaGallery-{{ section.id}}">
 <a class="skip-to-content-link visually-hidden" href="#ProductInfo-{{ section.id}}"> {{- 'accessibility.skip_to_product_info' | t -}}</a>
@@ -147,18 +70,48 @@ border: 3px solid var(--color-text-1);
           {% render 'price', product: product, user_variant: true, show_badges: true %}
         </div>
         <div>
-          <div >
-            <label for="Quantity-{{ section.id }}">
+          <div class="product-quantity">
+
+
+            <label for="quantity-{{ section.id }}">
               {{ 'products.product.quantity.label' | t }}
             </label>
+              {% render 'svg-minus', id: 'minus' %}
             <input
               type="number"
               name="quantity"
-              id="Quantity-{{ section.id }}"
+              id="quantity-{{ section.id }}"
               min="1"
               value="1"
               form="{{ product_form_id }}"
             >
+
+              {% render 'svg-plus', id: 'plus' %}
+
+              <script>
+               const quantityInput =  document.getElementById('quantity-{{- section.id -}}');
+               const minusButton = document.getElementById('minus');
+               const plusButton = document.getElementById('plus');
+               console.log(quantityInput, "quantity input")
+               minusButton.addEventListener('click' , ()=> {
+                console.log('mius clicked');
+                decrease();
+               })
+               plusButton.addEventListener('click', () => {
+                console.log('plus clicked')
+                increase();
+               })
+               const increase  = () => {
+                quantityInput.value = +quantityInput.value + 1; 
+               }
+               const decrease = ()=> {
+                if(quantityInput.value > 1) {
+                  quantityInput.value = +quantityInput.value - 1;
+                }else {
+
+                }
+               }
+              </script>
           </div>
         </div>
       </div>
@@ -242,14 +195,7 @@ border: 3px solid var(--color-text-1);
         <product-form {{ block.shopify_attributes }}>
           <div class="message-error" role="alert" hidden></div>
     
-          {%-
-            form 'product',
-            product,
-            id: product_form_id,
-            class: 'product-form',
-            novalidate: 'novalidate',
-            data-type: 'add-to-cart-form'
-          -%}
+          {%- form 'product', product, id: product_form_id, class: 'product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
             <input
               type="hidden"
               name="id"

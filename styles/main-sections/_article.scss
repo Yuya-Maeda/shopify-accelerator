@@ -1,0 +1,41 @@
+/* ====================== *\
+        Article
+\* ====================== */
+
+.article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .article__image-container {
+    position:relative;
+  }
+  .article__image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    height: auto;
+    object-fit: cover;
+  }
+  .article__category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background-color: var(--color-background-2);
+    color: var(--color-text-light);
+    padding: 40px;
+    aspect-ratio: 1/1;
+    display: grid;
+    place-items: center;
+  }
+  .article__title {
+    font-size: 2rem;
+  }
+  .article__details {
+    display: flex;
+    justify-content: space-between;
+  }
+  .article__back-to-blog {
+    display: flex;
+    justify-content: flex-end;
+  }
+  

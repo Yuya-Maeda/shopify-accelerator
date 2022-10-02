@@ -1,8 +1,19 @@
 // the 7-1 pattern
-@import "abstract";
 @import "base";
+@import "abstract";
 @import "components";
 
 @import "layout";
 
-/* test*/
+
+/* ====================== *\
+    Main-sections
+\* ====================== */
+
+@import "main-sections/product";
+@import "main-sections/article";
+@import "main-sections/blog";
+@import "main-sections/cart";
+@import "main-sections/collection";
+@import "main-sections/page";
+@import "main-sections/404";

@@ -1,0 +1,25 @@
+/* ===================== *\
+        Components
+\* ===================== */
+
+/* == Buttons == */
+.btn {
+    padding: 10px;
+    background-color: var(--color-background-1);
+    border: solid 2px var(--color-text-dark);
+    color: var(--color-text-dark);
+}
+.btn--light {
+    background-color: var(--color-background-2);
+    border: solid 2px var(--color-text-light);
+    color: var(--color-text-light);
+}
+a.btn  {
+    text-decoration: none;
+}
+.btn:hover {
+    background-color: var(--color-background-2);
+    color: var(--color-text-light);
+    border: solid 2px var(--color-text-light);
+}
+

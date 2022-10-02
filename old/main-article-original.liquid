@@ -1,50 +1,35 @@
 <article>
   <div class="container">
-    <div class="article-container">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
         {%- when '@app' -%}  
-        {% render block %}
-
-
+          {% render block %}
         {%- when 'featured_image'-%}
-        {%- if article.image -%}
-          <div class="article__image-container">
-          {{ article.image | image_url: width: 1200 | image_tag: class: 'article__image' }}
-          <div class="article__category">Category </div>
-          </div>
-        {%- endif -%}  
-
+          {%- if article.image -%}
+            <div class="media" style="--width: {{ article.image.width }}; --height: {{ article.image.height }};">
+              {{ article.image | image_url: width: article.image.width | image_tag }}
+            </div>
+          {%- endif -%}  
         {%- when 'title'-%}
-          <h1 class="article__title">{{ article.title | escape }}</h1>
-        
+          <h1>{{ article.title | escape }}</h1>
         {%- when 'details' -%}  
-        <div class="article__details">
           <p>{{ article.published_at | time_tag: format: 'date' }}</p>
-          <p>{{ article.author }}</p>
-        </div>
-
+          <p>{{ article.author }}</p>           
         {%- when 'content'-%}
-        <div class="acticle__contents">{{ article.content }}</div>
+          {{ article.content }}
+      {%- endcase -%}
+    {%- endfor -%}
 
-        {%- endcase -%}
-        {%- endfor -%}
-        
-        <div class="article__back-to-blog">
-          <p>
-            <a href="{{ blog.url }}">
-              {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
-            </a>
-          </p>  
-        </div>
-        
-    </div>
+    <p>
+      <a href="{{ blog.url }}">
+        {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+      </a>
+    </p>  
   </div>
 </article>
-    
-    <script type="application/ld+json">
-      {
+
+<script type="application/ld+json">
+  {
     "@context": "http://schema.org",
     "@type": "Article",
     "articleBody": {{ article.content | strip_html | json }},

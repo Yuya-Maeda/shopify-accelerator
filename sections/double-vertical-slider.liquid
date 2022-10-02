@@ -1,0 +1,245 @@
+<style>
+.slider-container * {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 500px;
+    /* transform: rotate(90deg); */
+}
+
+.left-slide {
+    height: 100%;
+    width: 35%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform .5s ease-in-out;
+}
+.slide-info__title {
+    font-size: 2rem;
+    padding: 0 10px 0 0;
+}
+.slide-info__description {
+    padding: 0 60px 0 0;
+}
+.slide-info__price {
+    font-size: 1.3rem;
+}
+.slide-info__btn {
+    border: solid 2px var(--color-text-dark) !important; 
+    background-color: white;
+    color: var(--color-text-dark);
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+}
+
+.left-slide > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    padding-left:20px;
+}
+.right-slide {
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 35%;
+    width:65%;
+    transition: transform .5s ease-in-out;
+}
+.right-slide > div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+}
+.slider-container .action-buttons button {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    z-index: 10;
+
+    background-color: white;
+    border: none;
+    color: var(--color-text-dark);
+    font-size: 30px;
+    padding: 10px;
+}
+
+.slider-container .action-buttons button:hover {
+    color: var(--color-text-light);
+    background-color: var(--color-text-dark);
+}
+
+.slider-container .action-buttons button:focus {
+    outline: none;
+}
+
+.slider-container .action-buttons .down-button {
+    transform: translateX(-100%);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.slider-container .action-buttons .up-button {
+    transform: translateY(-100%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.slide-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    
+}
+.slide-image__description {
+    display: none;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color-text-light);
+}
+@media screen and (max-width:749px) {
+    .left-slide > div {
+        padding-left: 10px;
+        padding-right:20px;
+    }
+    .slide-info__title {
+        font-size: 1.3rem;
+    }
+    .slide-info__description {
+        display: none
+    }
+    .slide-info__price{
+        font-size: 1rem;
+    }
+    .slide-image__description {
+        display: block;
+    }
+    .slider-container .action-buttons button {
+        font-size: 10px;
+    }
+    .slide-image__description {
+        font-size: 0.8rem;
+    }
+}
+</style>
+<div class="container">
+
+    <div class="slider-container">
+        <div class="left-slide">
+            {% for slide in section.blocks %}
+            <div style="background-color: {{- slide.settings.color -}} ;">
+                <h2 class="slide-info__title">{{- slide.settings.product -}}</h2>
+                <p class="slide-info__description">{{- slide.settings.product.description | strip_html| truncate: 100, '...' -}}</p>
+                <h3 class="slide-info__price">{{- slide.settings.product.price | money -}}</h3>
+                <a href="{{ slide.settings.product.url }}" class="slide-info__btn">Check</a>
+            </div>    
+
+            {% endfor %}
+            
+        </div>
+        <div class="right-slide">
+            {% for slide in section.blocks  reversed %}
+            <div class="slide-image" style="background-image:url('{{- slide.settings.product | image_url: width: 600, height:600, crop: 'center', format: 'pjpg' -}}') ;">
+            <p class="slide-image__description">{{- slide.settings.product.description | strip_html | truncate: 60, '...' -}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="action-buttons">
+            <button class="down-button">↓</button>
+            <button class="up-button">↑</button>
+        </div>
+    
+    
+    </div>
+</div>
+
+<script>
+    const sliderContainer = document.querySelector('.slider-container');
+    const slideLeft = document.querySelector('.left-slide');
+    const slideRight = document.querySelector('.right-slide');
+    const upButton = document.querySelector('.up-button');
+    const downButton = document.querySelector('.down-button');
+    const slidesLength = slideRight.querySelectorAll('div').length;
+    const slidesHeight = sliderContainer.clientHeight
+    console.log(slidesHeight)
+    let activeSlideIndex = 0
+
+    slideLeft.style.top = `-${(slidesLength - 1) * slidesHeight}px`;
+
+    upButton.addEventListener('click', () => changeSlide('up'));
+    downButton.addEventListener('click', () => changeSlide('down'));
+    slideLeft.addEventListener('click', () => changeSlide('up'));
+    slideRight.addEventListener('click', ()=> changeSlide('down'));
+
+    const changeSlide = (direction) => {
+        const sliderHeight = sliderContainer.clientHeight;
+        if(direction === 'up'){
+            activeSlideIndex++
+            if(activeSlideIndex > slidesLength - 1) {
+                activeSlideIndex = 0
+            }
+        } else if(direction === 'down') {
+            activeSlideIndex-- 
+            if(activeSlideIndex < 0) {
+                activeSlideIndex = slidesLength - 1 
+            }
+        }
+        slideLeft.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`
+
+        slideRight.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`
+        
+    }
+</script>
+
+
+
+{% schema %}
+{
+    "name": "Double Vertical Slider",
+    "limit": 1,
+    "settings": [
+        {
+           "type": "header",
+           "content": "Header"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "product",
+            "name": "Product",
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Product"
+
+                },
+                {
+                    "type": "color",
+                    "id": "color",
+                    "label": "Color",
+                    "default": "#555555"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name" : "Double Vertical Slider"
+        }
+    ]
+}
+{% endschema %}

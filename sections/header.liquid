@@ -1,261 +1,77 @@
-{{ 'component-dialog.css' | asset_url | stylesheet_tag }}
+<header class="container mobile-hide">
 
-<style>
-  .desktop-header {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    place-items: center;
-    height: 100px;
-    z-index: 2;
+    <nav class="navigation">
 
-    border-top: 3px solid var(--color-border);
-    border-bottom: 3px solid var(--color-border);
-  }
-
-  /* Logo */
-
-  .desktop-logo-container {
-    max-height: 80px;
-    overflow: hidden;
-  }
-
-  /* Navigation in header */
-  .navigation {
-    display: flex;
-    gap: 20px;
-  }
-
-  .dropdown-first {
-    position: relative;
-    height: 80px;
-    display: grid;
-    place-items: center;
-  }
-
-  .dropdown-first-content {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-
-    display: none;
+      <a class="logo" href="{{ routes.root_url}}">
+       {%- if section.settings.logo != blank -%}
+        {{- section.settings.logo | image_url: height: 160 | image_tag: height: 80, alt: section.settings.logo.alt | default: shop.name | escape -}}
+        
+       {%- else -%}
+        <span>{{- shop.name -}}</span>
+       {%- endif -%}
+      </a>
 
 
 
-    position: absolute;
-    left: 0;
-    transform: translateY(80px);
-    height: 100px;
-    width: 100vw;
-    z-index: 2;
-
-    background-color: var(--color-background-1);
-    border-top: 3px solid var(--color-border);
-    border-bottom: 3px solid var(--color-border);
-  }
-
-  .dropdown-first:hover+.dropdown-first-content {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .dropdown-first-content:hover {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .dropdown-second {
-    position: relative;
-    display: grid;
-    height: 80px;
-    place-items: center;
-
-
-  }
-
-  .dropdown-second-content {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-
-    display: none;
-
-    transform: translateY(80px);
-    position: absolute;
-
-    height: 80px;
-    width: 100vw;
-    z-index: 2;
-
-    background-color: var(--color-background-1);
-    border-top: 3px solid var(--color-border);
-    border-bottom: 3px solid var(--color-border);
-  }
-
-  .dropdown-second:hover+.dropdown-second-content {
-    display: flex;
-  }
-
-  .dropdown-second-content:hover {
-    display: flex;
-  }
-
-  .dropdown-third {
-    display: grid;
-    place-items: center;
-  }
-
-  /* shopify's icon  */
-  .shopify-icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-  }
-
-  .shopify-icons svg {
-    height: 2rem;
-  }
-
-
-  @media screen and (max-width:749px) {
-    .mobile-hide {
-      display: none;
-    }
-
-    .mobile-nav a {
-      display: block;
-    }
-
-  }
-
-  @media screen and (min-width:750px) {
-    .desktop-hide {
-      display: none;
-    }
-  }
-
-  .mobile-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    justify-content: space-between;
-    column-gap: 30vw;
-    padding: 5px 0 5px 0;
-  }
-
-  #hamburger {
-    display: grid;
-    place-items: center;
-  }
-
-  .hide-mobile-nav {
-    padding: 0;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.5s;
-  }
-
-  .show-mobile-nav {
-    padding: 10px 0 10px 0;
-    height: 80vh;
-    transition: height 1s;
-  }
-
-  .mobile-shopify-icons-container {
-    display: grid;
-    justify-content: end;
-    padding: 10px 30px 10px 20px;
-    border-bottom: solid 1px var(--color-border);
-  }
-
-  #mobile-nav-item {
-
-    border-top: solid 2px var(--color-border);
-    border-bottom: solid 2px var(--color-border);
-  }
-
-  .mobile-nav-first {
-    padding: 5px 0 5px 20px;
-  }
-
-
-  .mobile-nav-second {
-    padding: 5px 0 5px 20px;
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .mobile-nav-third {
-    padding: 5px 0 5px 20px;
-    display: flex;
-    gap: 20px;
-  }
-</style>
-
-<header class="mobile-hide desktop-header">
-  {%- # logo -%}
-  <div class="desktop-logo-container">
-    <a href="{{ routes.root_url }}">
-      {%- if section.settings.logo != blank -%}
-      {{ section.settings.logo |
-      image_url: height: 160 |
-      image_tag: height: 80, alt: section.settings.logo.alt | default: shop.name | escape
-      }}
-      {%- else -%}
-      <span>{{ shop.name }}</span>
-      {%- endif -%}
-    </a>
-  </div>
-
-  {%- # for Desktop -%}
-  <nav class="navigation">
-    {% for link in section.settings.menu.links %}
-    <div class="dropdown-first"><a href="{{- link.url -}}">{{ link.title | escape }}</a></div>
-    {% if link.links.size > 0 %}
-    <div class="dropdown-first-content navigation">
-
-      {% for child_link in link.links %}
-      <div class="dropdown-second"><a href="{{- child_link.url -}}">{{- child_link.title -}}</a></div>
-      {% if child_link.links.size > 0 %}
-      <div class="dropdown-second-content">
-        {% for grandchild_link in child_link.links %}
-        <div class="dropdown-third"><a href="{{- grandchild_link.url -}}">{{- grandchild_link.title -}}</a></div>
-        {% endfor %}
-
+      <div id="parent-menu" class="parent-menu">
+        {%- for parent_link in section.settings.menu.links -%}
+          <a href="{{- parent_link.url -}}" id="parent-menu-{{- forloop.index -}}">{{- parent_link.title -}}</a>
+        {%- endfor -%}
       </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-    {% endif %}
-    {% endfor %}
-  </nav>
-  {%- # for Icons -%}
-  <div class="shopify-icons">
-    {%- # Search -%}
-    <a href="{{ routes.search_url }}"> {% render 'svg-search' %}</a>
-    {%- # Login -%}
-    {% if customer %}
-    <a href="{{ routes.account_url}}">{% render 'svg-account' %}</a>
-    {%- else -%}
-    <a href="{{ routes.account_login_url}}">{% render 'svg-account' %}l</a>
-    {% endif %}
-    {%- # Cart -%}
-    <a href="{{ routes.cart_url}}">{% render 'svg-bag' %}
-      <span id="CartBubble">{%- unless cart == empty -%}
-        ({{ cart.item_count}})
-      {%- endunless -%}</span>
-    </a>
+      
+      <div class="shopify-icons">
+        {%- # Search -%}
+        <a href="/search">{% render 'svg-search' %}</a>
+        {%- # Login -%}
+        <a href="/login">{% render 'svg-account' %}</a>
+        {%- # Cart -%}
+        <a href="/cart">{% render 'svg-bag' %}</a>
+      </div>
+
+        
+    </nav>
+
+    <div id="child-menu-container">
+      {%- for parent_link in section.settings.menu.links -%}
+        <div id="child-menu-index-{{- forloop.index | minus: 1 -}}" class="child-menu" style="display: none">
+          <div>
+            {%- for child_link in parent_link.links -%}
+                <a href="{{- child_link.url -}}">{{- child_link.title -}}</a>
+            {%- endfor -%}
+          </div>
+        </div>        
+      {%- endfor -%}
   </div>
-  
-
+  <div id="grandchild-menu-container">
+    {%- for parent_link in section.settings.menu.links -%}
+      {%- assign parent_link_index = forloop.index | minus: 1  -%}
+      {%- for child_link in parent_link.links -%}
+        {%- assign child_link_index = forloop.index | minus: 1 -%}
+       <div id="grandchild-menu-index-{{- parent_link_index -}}-{{- child_link_index -}}" class="grandchild-menu" style="display: none;">
+            <div>
+              {%- for grandchild_link in child_link.links -%}
+              <a href="{{- grandchild_link.url -}}">{{- grandchild_link.title -}}</a>
+              {%- endfor -%}
+            </div>
+          </div>       
+      {%- endfor -%}
+      
+    {%- endfor -%}
+     
+  </div>
 </header>
-
-<header class="desktop-hide">
+<header class="desktop-hide container ">
 
   {%- # for Mobile -%}
   <div class="mobile-header">
-    <div class="logo">logo</div>
+    <a class="logo" href="{{ routes.root_url}}">
+      {%- if section.settings.logo != blank -%}
+       {{- section.settings.logo | image_url: height: 100 | image_tag: height: 50, alt: section.settings.logo.alt | default: shop.name | escape -}}
+      {%- else -%}
+       <span>{{- shop.name -}}</span>
+      {%- endif -%}
+     </a>
+
     <div id="hamburger">{% render 'svg-mobile-menu' %}</div>
   </div>
 
@@ -265,11 +81,11 @@
       {%- # for Icons -%}
       <div class="shopify-icons">
         {%- # Search -%}
-        {% render 'svg-search' %}
+        <a href="/search">{% render 'svg-search' %}</a>
         {%- # Login -%}
-        {% render 'svg-account' %}
+        <a href="/login">{% render 'svg-account' %}</a>
         {%- # Cart -%}
-        {% render 'svg-bag' %}
+        <a href="/cart">{% render 'svg-bag' %}</a>
       </div>
     </div>
     {% for link in section.settings.menu.links %}
@@ -296,91 +112,13 @@
     {% endfor %}
   </nav>
 </header>
-{%- # Mobile Header -%}
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileNavItem = document.getElementById('mobile-nav-item');
-  hamburger.addEventListener('click', () => { mobileNavItem.classList.toggle('show-mobile-nav') });
-</script>
 
-<!--
+{{- 'header.js' | asset_url | script_tag -}}
 
-<header class="header">
-  <div class="container">
-    <details class="dialog drawer overlay">
-      <summary aria-haspopup="dialog" aria-controls="MenuDrawer">
-        <span class="button">{{ 'sections.header.menu' | t }}</span>
-        <span class="dialog-close button" aria-label="Close menu">{{ 'general.dialog.close' | t }}</span>
-      </summary>
-      <nav id="MenuDrawer" role="dialog" aria-label="Menu" aria-modal="true">
-        <div class="dialog-body">
-          <ul class="menu list-unstyled" role="list">
-            {%- for link in section.settings.menu.links -%}
-              <li>
-                {%- if link.links != blank -%}
-                  <details class="disclosure">
-                    <summary class="menu-item{% if link.child_active %} active{% endif %}" 
-                      role="button"
-                      aria-expanded="true"
-                      aria-controls="MenuItem-{{ forloop.index }}-Submenu"
-                    >
-                      <span>
-                        {{ link.title | escape }}
-                      </span>
-                    </summary>
-                    <div id="MenuItem-{{ forloop.index }}-Submenu">
-                      <ul class="submenu list-unstyled" role="list">
-                        {%- for childlink in link.links -%}
-                          <li>
-                            <a href="{{ childlink.url }}"
-                              class="menu-item{% if childlink.current %} active{% endif %}" 
-                              {% if childlink.current %} aria-current="page"{% endif %}
-                            >
-                              {{ childlink.title | escape }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                  </details>
-                {%- else -%}
-                  <a href="{{ link.url }}"
-                    class="menu-item{% if link.current %} active{% endif %}"
-                    {% if link.current %} aria-current="page"{% endif %}
-                  >
-                    <span {%- if link.current %} class="active"{% endif %}>
-                      {{ link.title | escape }}
-                    </span>
-                  </a>
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      </nav>
-    </details>
-    
-    
-    <div class="utility-links">
-      <a href="{{ routes.search_url }}">{{ 'sections.header.search' | t }}</a>
-      {%- if customer -%}
-      <a href="{{ routes.account_url }}">{{ 'sections.header.account' | t }}</a>
-      {%- else -%}
-      <a href="{{ routes.account_login_url }}">{{ 'sections.header.login' | t }}</a>
-      {%- endif -%}
-      <a href="{{ routes.cart_url }}">
-        {{ 'sections.header.cart' | t }} <span id="CartBubble">{% unless cart == empty %}({{ cart.item_count }}){% endunless
-          %}</span>
-        </a>
-      </div>
-    </div>
-  </header>
-  
--->
 {% schema %}
 {
-"name": "Header",
-"tag": "section",
+  "name": "Header",
+  "tag": "section",
 "settings": [
 {
 "type": "image_picker",
@@ -391,7 +129,8 @@
 "type": "link_list",
 "id": "menu",
 "default": "main-menu",
-"label": "Menu"
+"label": "Menu",
+"info": "Menu-item which has child needs to have '#' instead of url"
 }
 ]
 }

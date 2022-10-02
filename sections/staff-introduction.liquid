@@ -1,0 +1,266 @@
+{%- # Color Settings -%}
+{%- assign transparent_value = 'rgba(0,0,0,0)' -%}
+
+<style>
+    .introduction-of-staff {
+        text-align: center;
+    }
+    .staff-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: 3fr 5fr;
+        margin-bottom: 15px;
+    }
+    .staff-row:after {
+        content: '';
+        background: grey;
+        {%- if section.settings.line_color -%}
+        background: {{- section.settings.line_color -}};
+        {%- endif -%}
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 1px;
+        width: 20%;
+        transform: translateX(-50%);
+    }
+    .staff-image-container {
+    }
+    .staff-image-container .image-flame {
+        height: 250px;
+        width: 250px;
+        overflow: hidden;
+        margin: 0 auto ;
+    }
+    .staff-image {
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+    }
+    .staff-info {
+        margin-bottom: 10px;
+    }
+    .staff-name {
+        margin-top: 0;
+    }
+    .staff-link-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .staff-sns {
+        display: grid;
+        grid-auto-flow: column;
+        place-items: center;
+        gap: 10px;
+    }
+    .staff-sns svg {
+        height: 35px;
+    }
+    
+    @media screen and (max-width:749px) {
+        .staff-row {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .staff-name,
+        .staff-position {
+            margin: 10px;
+            text-align: center;
+        }
+        .staff-link-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            place-items: center;
+            gap: 10px;
+        }
+    }
+
+</style>
+{% capture image_flame %}
+{% if section.settings.image_flame == "circle" %}
+style="clip-path: circle(40%)"
+{% elsif section.settings.image_flame == 'rounded' %}
+style="border-radius: 5%"
+{% elsif section.settings.image_flame == 'bevel' %}
+style="clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);"
+{% elsif section.settings.image_flame == 'hishigata' %}
+style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"
+{% else %}
+{% endif %}
+{% endcapture %}
+<div class="container">
+    <h2 class="introduction-of-staff" >{{- section.settings.title -}}</h2>
+        {% for block in section.blocks %}
+            <div class="staff-row">
+                <div class="staff-image-container">
+                    <div class="image-flame" {{- image_flame -}}>
+                        {% if block.settings.image != blank %}
+                        {{ block.settings.image | image_url: width: 500 | image_tag: width: 500, height: 500, alt: block.settings.title , class: 'staff-image', loading: 'lazy' }}
+                        {% else %}
+                        {{ 'product-3' | placeholder_svg_tag : 'classname' }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">{{- block.settings.title  -}}</h3>
+                    <p class="staff-position" ><small>{{- block.settings.position -}}</small></p>
+                    <p class="staff-message">{{- block.settings.textarea -}}</p>
+                    <div class="staff-link-container">
+                        <div class="staff-sns">
+                            {% if block.settings.twitter != blank %}
+                            <a href="{{- block.settings.twitter -}}" target="_blank">{% render 'svg-twitter' %}</a>
+                            {% endif %}
+                            {% if block.settings.instagram != blank %}
+                            <a href="{{- block.settings.instagram -}}" target="_blank">{% render 'svg-instagram' %}</a>
+                            {% endif %}
+                            {% if block.settings.pinterest != blank %}
+                            <a href="{{- block.settings.pinterest -}}" target="_blank">{% render 'svg-pinterest' %}</a>
+                            {% endif %}
+                            {% if block.settings.youtube != blank %}
+                            <a href="{{- block.settings.youtube -}}" target="_blank">{% render 'svg-youtube' %}</a>
+                            {% endif %}
+                        </div>
+                    {% if block.settings.button != blank %}
+                        <div class="staff-link-button">
+                            <a class="btn" href="{{- block.settings.url -}}">{{- block.settings.button -}}</a>
+                        </div>
+                    {% endif %}
+                    </div>
+                    
+                </div>
+            </div> 
+        {% endfor %}
+
+
+</div>
+    
+{% schema %}
+{
+    "name": "Introduction of Staff",
+    "limit": 1,
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Section Title",
+            "default": "Our Staff"
+        },
+       {
+        "type": "select",
+        "id": "image_flame",
+        "label": "Image Shape",
+        "options": [
+            {
+                "value": "square",
+                "label": "Square"
+            },
+            {
+                "value": "circle",
+                "label": "Circle"
+            },
+            {
+                "value": "bevel",
+                "label": "Bevel"
+            },
+            {
+                "value": "rounded",
+                "label": "Rounded Square"
+            },
+            {
+                "value": "hishigata",
+                "label": "Hishigata"
+            }
+        ],
+        "default": "hishigata"
+       }
+    ],
+    "blocks": [
+        {
+            "type": "staff",
+            "name": "Staff",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Staff Picture"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Staff Name",
+                    "default": "Yoko Honda"
+                },
+                {
+                    "type": "text",
+                    "id": "position",
+                    "label": "Staff Position",
+                    "default": "Accessory Designer"
+                },
+                {
+                    "type": "textarea",
+                    "id": "textarea",
+                    "label": "Staff Message",
+                    "default": "入社3年目。大手アパレルブランドでのデザイナーの経経を活かして、どんなコーディネートにも合う、長く使えるデザインを心がけています。",
+                    "info": "<br> is for line break"
+                },
+                {
+                    "type": "text",
+                    "id": "button",
+                    "label": "Link Button Text",
+                    "default": "Staff's Article"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link"
+                },
+                {
+                    "type": "header",
+                    "content": "SNS Links"
+                },
+                {
+                    "type": "text",
+                    "id": "twitter",
+                    "label": "Twitter",
+                    "default": "https:\/\/twitter.com"
+                },
+                {
+                    "type": "text",
+                    "id": "instagram",
+                    "label": "instagram",
+                    "default": "https:\/\/www.instagram.com"
+                },
+                {
+                    "type": "text",
+                    "id": "pinterest",
+                    "label": "Pinterest",
+                    "default": "https:\/\/www.pinterest.com"
+                },
+                {
+                    "type": "text",
+                    "id": "youtube",
+                    "label": "Youtube",
+                    "default": "https:\/\/www.youtube.com"
+                }
+            ]
+        }
+    ],
+
+    "presets": [
+        {
+            "name": "Introduction of Staff", 
+            "category": "Text and Image",
+            "blocks": [
+                {
+                    "type": "staff"
+                },
+                {
+                    "type": "staff"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

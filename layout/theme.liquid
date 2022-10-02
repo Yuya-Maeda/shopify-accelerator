@@ -40,22 +40,27 @@
   --color-accent-1: {{- settings.colors_accent_1 -}};
   --color-accent-2: {{- settings.colors_accent_2 -}};
   --color-accent-3: {{- settings.colors_accent_3 -}};
-  --color-text-1: {{- settings.colors_text_1 -}};
-  --color-text-2: {{- settings.colors_text_2 -}};
+  --color-text-dark: {{- settings.colors_text_1 -}};
+  --color-text-light: {{- settings.colors_text_2 -}};
   --color-foreground: {{ settings.colors_text_1 }};  
   --color-background-1: {{- settings.colors_background_1 -}};
   --color-background: {{- settings.colors_background_1 -}};
   --color-background-2: {{- settings.colors_background_2 -}};
-  
+  --color-border: {{- settings.colors_border -}};
+  --color-outline: {{- settings.colors_outline -}};
+  --shape: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  --typeface: serif;  
+
+  --container-padding: {{- settings.container_padding -}}px;
   {%- # Shopify TAC basic -%}
   --color-outline: #808080;
   --color-error: #DC143C;
   --color-success: #008000;
-  --color-border: #D3D3D3;
   
   {% endstyle %}
-
-  {{ 'base.css' | asset_url | stylesheet_tag }}
+{%- comment -%}
+{{ 'base.css' | asset_url | stylesheet_tag }}
+{%- endcomment -%}
   {{ 'header.css' | asset_url | stylesheet_tag }}
   {{ 'my-theme.css' | asset_url | stylesheet_tag }}
 

@@ -1,0 +1,395 @@
+<style>
+.color-variation-title {
+    margin: 5px 0;
+}
+.color-variation-container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 10px;
+}
+.color-box {
+    height: 100px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+}
+.color-variation-container h2,
+.color-variation-container h5,
+.color-name {
+    font-size: clamp(0.3rem, 0.3rem + 1vw, 1rem);
+    text-align: center;
+    font-style: normal;
+    margin: auto;
+}
+.color-box .font-white {
+    color: white;
+}
+
+.color-comparison-container {
+    padding: 20px;
+    margin-top: 20px;
+}
+.comparison-info {
+    background-color: white;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+.comparison-info > * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    max-width: 100%;
+}
+.comparison-info > h3 {
+    font-size: 1.2rem;
+}
+.comparison-info span {
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 1rem;
+    color: white;
+    background-color: black;
+}
+.comparison-info .color-hex--bg {
+    font-size: 1.5rem;
+}
+.comparison-info .color-hex--font {
+    font-size: 1.5rem;
+    background-color: white;
+    color: black;
+}
+.comparison__headings * {
+    margin: 5px 0;
+}
+</style>
+
+<div class="container">
+    <h2 style="text-align: center ; margin: 10px">Color variation Palette</h2>
+    <h3 class="color-variation-title">Color - 1 variation </h3>
+    {%- liquid
+        assign color_one = section.settings.color_one
+        assign color_one_hex = color_one | color_to_hex
+        -%}
+    <div class="color-variation-container">
+        <div class="color-box" style="background-color:{{- color_one_hex | color_lighten: 40 -}} ;">
+            <h5>Lighten +40</h5>
+            <h4 class="color-name" >{{- color_one_hex | color_lighten: 40 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color:{{- color_one_hex | color_lighten: 30 -}} ;">
+            <h5>Lighten +30</h5>
+            <h4 class="color-name" >{{- color_one_hex | color_lighten: 30 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_one_hex | color_lighten: 20 -}} ;">
+            <h5>Lighten +20</h5>
+            <h4 class="color-name" >{{- color_one_hex | color_lighten: 20 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_one_hex | color_lighten: 10 -}} ;">
+            <h5>Lighten +10</h5>
+            <h4 class="color-name" >{{- color_one_hex | color_lighten: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_one_hex -}};">
+            <h5 class="font-white">Original</h5>
+            <h4 class="color-name font-white" >{{- color_one_hex -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_one_hex | color_darken: 10 -}};">
+            <h5 class="font-white">Darken +10 </h5>
+            <h4 class="color-name font-white">{{- color_one_hex | color_darken: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_one_hex | color_darken: 20 -}};">
+            <h5 class="font-white">Darken +20 </h5>
+            <h4 class="color-name font-white">{{- color_one_hex | color_darken: 20 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_one_hex | color_darken: 30 -}};">
+            <h5 class="font-white">Darken +30 </h5>
+            <h4 class="color-name font-white">{{- color_one_hex | color_darken: 30 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_one_hex | color_darken: 40 -}};">
+            <h5 class="font-white">Darken +40 </h5>
+            <h4 class="color-name font-white">{{- color_one_hex | color_darken: 40 -}}</h4>
+        </div>
+    </div>
+    {%- # Color 2  -%}
+    <h3 class="color-variation-title">Color - 2 variation </h3>
+    {%- liquid
+        assign color_two = section.settings.color_two
+        assign color_two_hex = color_two | color_to_hex
+        -%}
+    <div class="color-variation-container">
+        <div class="color-box" style="background-color:{{- color_two_hex | color_lighten: 40 -}} ;">
+            <h5>Lighten +40</h5>
+            <h4 class="color-name" >{{- color_two_hex | color_lighten: 40 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color:{{- color_two_hex | color_lighten: 30 -}} ;">
+            <h5>Lighten +30</h5>
+            <h4 class="color-name" >{{- color_two_hex | color_lighten: 30 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_two_hex | color_lighten: 20 -}} ;">
+            <h5>Lighten +20</h5>
+            <h4 class="color-name" >{{- color_two_hex | color_lighten: 20 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_two_hex | color_lighten: 10 -}} ;">
+            <h5>Lighten +10</h5>
+            <h4 class="color-name" >{{- color_two_hex | color_lighten: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_two_hex -}};">
+            <h5 class="font-white">Original</h5>
+            <h4 class="color-name font-white" >{{- color_two_hex -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_two_hex | color_darken: 10 -}};">
+            <h5 class="font-white">Darken +10 </h5>
+            <h4 class="color-name font-white">{{- color_two_hex | color_darken: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_two_hex | color_darken: 20 -}};">
+            <h5 class="font-white">Darken +20 </h5>
+            <h4 class="color-name font-white">{{- color_two_hex | color_darken: 20 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_two_hex | color_darken: 30 -}};">
+            <h5 class="font-white">Darken +30 </h5>
+            <h4 class="color-name font-white">{{- color_two_hex | color_darken: 30 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_two_hex | color_darken: 40 -}};">
+            <h5 class="font-white">Darken +40 </h5>
+            <h4 class="color-name font-white">{{- color_two_hex | color_darken: 40 -}}</h4>
+        </div>
+    </div>
+    {%- # Color 3 -%}
+    <h3 class="color-variation-title">Color - 3 variation </h3>
+    {%- liquid
+        assign color_three = section.settings.color_three
+        assign color_three_hex = color_three | color_to_hex
+        -%}
+    <div class="color-variation-container">
+        <div class="color-box" style="background-color:{{- color_three_hex | color_lighten: 40 -}} ;">
+            <h5>Lighten +40</h5>
+            <h4 class="color-name" >{{- color_three_hex | color_lighten: 40 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color:{{- color_three_hex | color_lighten: 30 -}} ;">
+            <h5>Lighten +30</h5>
+            <h4 class="color-name" >{{- color_three_hex | color_lighten: 30 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_three_hex | color_lighten: 20 -}} ;">
+            <h5>Lighten +20</h5>
+            <h4 class="color-name" >{{- color_three_hex | color_lighten: 20 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_three_hex | color_lighten: 10 -}} ;">
+            <h5>Lighten +10</h5>
+            <h4 class="color-name" >{{- color_three_hex | color_lighten: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_three_hex -}};">
+            <h5 class="font-white">Original</h5>
+            <h4 class="color-name font-white" >{{- color_three_hex -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_three_hex | color_darken: 10 -}};">
+            <h5 class="font-white">Darken +10 </h5>
+            <h4 class="color-name font-white">{{- color_three_hex | color_darken: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_three_hex | color_darken: 20 -}};">
+            <h5 class="font-white">Darken +20 </h5>
+            <h4 class="color-name font-white">{{- color_three_hex | color_darken: 20 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_three_hex | color_darken: 30 -}};">
+            <h5 class="font-white">Darken +30 </h5>
+            <h4 class="color-name font-white">{{- color_three_hex | color_darken: 30 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_three_hex | color_darken: 40 -}};">
+            <h5 class="font-white">Darken +40 </h5>
+            <h4 class="color-name font-white">{{- color_three_hex | color_darken: 40 -}}</h4>
+        </div>
+    </div>
+    {%- # Color 4 -%}
+    <h3 class="color-variation-title">Color - 4 variation </h3>
+    {%- liquid
+        assign color_four = section.settings.color_four
+        assign color_four_hex = color_four | color_to_hex
+        -%}
+    <div class="color-variation-container">
+        <div class="color-box" style="background-color:{{- color_four_hex | color_lighten: 40 -}} ;">
+            <h5>Lighten +40</h5>
+            <h4 class="color-name" >{{- color_four_hex | color_lighten: 40 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color:{{- color_four_hex | color_lighten: 30 -}} ;">
+            <h5>Lighten +30</h5>
+            <h4 class="color-name" >{{- color_four_hex | color_lighten: 30 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_four_hex | color_lighten: 20 -}} ;">
+            <h5>Lighten +20</h5>
+            <h4 class="color-name" >{{- color_four_hex | color_lighten: 20 -}}</h4>
+        </div>
+        
+        <div class="color-box" style="background-color:{{- color_four_hex | color_lighten: 10 -}} ;">
+            <h5>Lighten +10</h5>
+            <h4 class="color-name" >{{- color_four_hex | color_lighten: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_four_hex -}};">
+            <h5 class="font-white">Original</h5>
+            <h4 class="color-name font-white" >{{- color_four_hex -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_four_hex | color_darken: 10 -}};">
+            <h5 class="font-white">Darken +10 </h5>
+            <h4 class="color-name font-white">{{- color_four_hex | color_darken: 10 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_four_hex | color_darken: 20 -}};">
+            <h5 class="font-white">Darken +20 </h5>
+            <h4 class="color-name font-white">{{- color_four_hex | color_darken: 20 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_four_hex | color_darken: 30 -}};">
+            <h5 class="font-white">Darken +30 </h5>
+            <h4 class="color-name font-white">{{- color_four_hex | color_darken: 30 -}}</h4>
+        </div>
+        <div class="color-box" style="background-color: {{- color_four_hex | color_darken: 40 -}};">
+            <h5 class="font-white">Darken +40 </h5>
+            <h4 class="color-name font-white">{{- color_four_hex | color_darken: 40 -}}</h4>
+        </div>
+    </div>
+
+    {%- # Color Comparison  -%}
+    {%- liquid
+        assign bg_color = section.settings.bg_color 
+        assign font_color = section.settings.font_color
+        assign brightness_difference = bg_color | brightness_difference: font_color
+        assign color_contrast = bg_color | color_contrast: font_color
+        assign color_difference = bg_color | color_difference : font_color 
+    -%}
+    {%- capture brightness_difference_check -%}
+       {%- if brightness_difference > 100 and brightness_difference <= 125 -%}
+        style="color: black;"
+        {%- elsif brightness_difference > 125 -%}
+        style="color: green ;"
+        {%- else -%}
+        style="color: red;"
+    {%- endif -%}    
+    {%- endcapture -%}
+    {%- capture color_contrast_check -%}
+       {%- if color_contrast > 3 and color_contrast <= 7 -%}
+        style="color: black;"        
+       {%- elsif color_contrast > 7 -%}
+        style="color: green ;"
+       {%- else -%}
+       style="color: red ;"     
+       {%- endif -%}
+    {%- endcapture -%}
+    {%- capture color_difference_check -%}
+       {%- if color_difference > 400 and color_difference <= 500 -%}
+        style="color: black ;"
+       {%- elsif color_difference > 500 -%}
+       style="color: green ;"
+       {%- else -%}
+       style="color: red ;"
+       {%- endif -%}
+    {%- endcapture -%}
+
+    {%- capture brightness_difference_check_label -%}
+       {%- if brightness_difference > 100 and brightness_difference <= 125 -%}
+        <span style="background-color: black; color: white;">Normal</span>
+        {%- elsif brightness_difference > 125 -%}
+        <span style="background-color: green; color: white;">Good!</span>
+        {%- else -%}
+        <span style="background-color: red; color: white;">hmmm🤔</span>
+    {%- endif -%}    
+    {%- endcapture -%}
+    {%- capture color_contrast_check_label -%}
+    {%- if color_contrast > 3 and color_contrast <= 7 -%}
+        <span style="background-color: black; color: white;">Normal</span>
+        {%- elsif color_contrast > 7 -%}
+        <span style="background-color: green; color: white;">Good!</span>
+        {%- else -%}
+        <span style="background-color: red; color: white;">hmmm🤔</span>
+    {%- endif -%}
+    {%- endcapture -%}
+
+    {%- capture color_difference_check_label -%}
+    {%- if color_difference > 400 and color_difference <= 500 -%}
+        <span style="background-color: black; color: white;">Normal</span>
+    {%- elsif color_difference > 500 -%}
+        <span style="background-color: green; color: white;">Good!</span>
+    {%- else -%} 
+        <span style="background-color: red; color: white;">hmmm🤔</span>
+    {%- endif -%}
+    {%- endcapture -%}
+    <div 
+    class="color-comparison-container" 
+    style="background-color: {{- bg_color -}}; color:{{- font_color -}};"
+    >
+        <div class="color-comparison" >
+            <div class="comparison__headings">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+                <p>Paragraph</p>
+            </div>
+            <div class="comparison-info" style="color: black ;">
+                <h3>Background Color: <span class="color-hex--bg"> {{ bg_color }}</span> &nbsp;-&nbsp; Font Color: <span class="color-hex--font">{{ font_color }}</span></h3>
+                <h3>Brightness Difference is <em {{ brightness_difference_check }}>{{- brightness_difference -}}</em> &nbsp;{{- brightness_difference_check_label -}}</h3>
+                <p>For accessibility best practices, it's recommended to have a minimum brightness difference of 125.</p>
+                <h3>Color Contrast is <em {{ color_contrast_check }}>{{- color_contrast -}}</em> &nbsp;{{ color_contrast_check_label }}</h3>
+                <p>For accessibility best practices, the WCAG 2.0 level AA requires a minimum contrast ratio of 4.5:1 for normal text, and 3:1 for large text. Level AAA requires a minimum contrast ratio of 7:1 for normal text, and 4.5:1 for large text.</p>
+                <h3>Color Difference is <em {{ color_difference_check }}>{{- color_difference -}}</em> &nbsp;{{ color_difference_check_label }}</h3>
+                <p>For accessibility best practices, it's recommended to have a minimum color difference of 500.</p>
+            </div>
+        </div>            
+    </div>
+
+</div>
+
+
+{% schema %}
+{
+  "name": "Color Palette",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+        "type" : "color",
+        "id": "color_one",
+        "label": "Color One"
+    },
+    {
+        "type": "color",
+        "id": "color_two",
+        "label": "Color Two"
+    },
+    {
+        "type": "color",
+        "id": "color_three",
+        "label": "Color Three"
+    },
+    {
+        "type": "color",
+        "id": "color_four",
+        "label": "Color Four"
+    },
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+    },
+    {
+        "type": "color",
+        "id": "font_color",
+        "label": "Font Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Color Palette"
+    }
+  ]
+}
+{% endschema %}

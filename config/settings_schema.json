@@ -41,26 +41,38 @@
       {
         "type": "color",
         "id": "colors_text_1",
-        "default": "#000066",
-        "label": "Color Text 1"
+        "default": "#524747",
+        "label": "Color Text 1 for dark color"
       },
       {
         "type": "color",
         "id": "colors_text_2",
         "default": "#ffffff",
-        "label": "Color Text 2"
+        "label": "Color Text 2 for light color"
       },
       {
         "type": "color",
         "id": "colors_background_1",
-        "default": "#f7f4f0",
-        "label": "Background Color 1"
+        "default": "#fffdf9",
+        "label": "Background Color 1 for light background"
       },
       {
         "type": "color",
         "id": "colors_background_2",
         "default": "#371f19",
-        "label": "Background Color 2"
+        "label": "Background Color 2 for dark background"
+      },
+      {
+        "type": "color",
+        "id": "colors_border",
+        "default": "#990000", //#dddddd
+        "label": "Border Color"
+      },
+      {
+        "type": "color",
+        "id": "colors_outline",
+        "default": "#444444",
+        "label": "Outline Color"
       }
     ]
   },
@@ -91,7 +103,18 @@
       {
         "type": "header",
         "content": "Layout"
+      },
+      {
+        "type": "range",
+        "id": "container_padding",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "default": 0,
+        "step": 1,
+        "label": "Container Padding"
       }
+
     ]
   },
   {
