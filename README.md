@@ -17,19 +17,23 @@ It’s good for Japanese language and Japanese Mincho typeface. (Mincho typeface
 ### Main Section
 
 - Header
-  I tried to optimize accessibility that header can open with only keyboard on desktop view.
-  I'm still learning accessibility but what I can improve?
-
-  =Issue=: Cannot move focus ring automatically when open submenu. **I don't know how to implement** it seems .focus() doesn't work. Maybe .focus() only work for input tag?
-  = need to add = :needs to add Shopify Utility LInks
+  Trying to optimize accessibility that header can open with only keyboard.
+  =Issue=: Cannot move focus ring automatically when open submenu. **I don't know how to implement**
+  need to add :needs to add Shopify Utility LInks
 
 - Product Page
   Showing big image
   Variation switch button
-  =Issue=: It doesn't move to cart page when add cart clicked.
-  =Issue-2=: I added variation switch buttons which leads to its variation. But when page reload, the position go back to top. I don't like this behavior. Is that possible to change variation without page reload?  What I can do? Also the Javascript for that is not beautiful...
+  =Issue=: It doesn't move to cart page when add cart clicked
+  need to add: Variation picture switch function.
 
-  = need to add=: Variation pictures and its switch function like variation button.
+- Cart
+
+- Blog
+  Showing big picture and excerpt
+
+- Article
+  Showing big picture
 
 ### Presets Section
 
@@ -51,6 +55,9 @@ It’s good for Japanese language and Japanese Mincho typeface. (Mincho typeface
 Not Yet 🥲
 ===== On Progress 80% ======
 
+- Components
+  btn
+
 - Preset Section
   Introduction of Staff
   Color Palette
@@ -71,8 +78,6 @@ Not Yet 🥲
 - Preset Sections
 - carousel
 - product-slider
-- Components
-  btn
 
 ===== Not Even Started Yet🥲 =======
 
@@ -85,7 +90,9 @@ Not Yet 🥲
 - activate account page
 - Page--Contact page
 - Search page
+
 - list-collections
+
 - Sections
   contact-form
 - featured-blog
